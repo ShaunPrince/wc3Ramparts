@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class UnitReceiveCommands : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class UnitReceiveCommands : MonoBehaviour
     public void passiveTravelTo(Vector3 point)
     {
         destination = point;
+        this.gameObject.GetComponent<NavMeshAgent>().destination = destination;
     }
 
 	// Use this for initialization
@@ -22,6 +24,6 @@ public class UnitReceiveCommands : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        this.transform.Translate((destination - this.transform.position)*moveSpeed * Time.deltaTime);
-	}
+
+    }
 }
