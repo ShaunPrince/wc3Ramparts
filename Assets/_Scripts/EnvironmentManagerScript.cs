@@ -26,5 +26,13 @@ public class EnvironmentManagerScript : MonoBehaviour
 		
 	}
 
+    public void Rebake()
+    {
+        for (int i = 0; i < surfaces.Count; ++i)
+        {
+            surfaces[i].BuildNavMesh();
+        }
+    }
+
     
 }

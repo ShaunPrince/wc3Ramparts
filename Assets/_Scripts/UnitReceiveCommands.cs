@@ -12,7 +12,7 @@ public class UnitReceiveCommands : MonoBehaviour
     public void passiveTravelTo(Vector3 point)
     {
         destination = point;
-        this.gameObject.GetComponent<NavMeshAgent>().destination = destination;
+        this.gameObject.GetComponentInChildren<NavMeshAgent>().destination = destination;
     }
 
 	// Use this for initialization
