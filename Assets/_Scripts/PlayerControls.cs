@@ -41,6 +41,7 @@ public class PlayerControls : MonoBehaviour
         {
             GameObject tower = GameObject.Instantiate(towerTemplate, GameObject.Find("Grid").transform);
             tower.transform.localPosition = MouseWorldPos;
+            GameObject.Find("EnvironmentManager").GetComponent<EnvironmentManagerScript>().Rebake();
         }
 
 		if(Input.GetMouseButtonDown(1) && currentSelection == GameObject.Find("PlayerUnit"))
