@@ -7,6 +7,7 @@ public class PlayerControls : MonoBehaviour
     public GameObject currentSelection;
     public Camera pov;
     public GameObject towerTemplate;
+    public GameObject Wall;
 
     private Ray povRay;
     RaycastHit MouseWorldPosHit;
@@ -38,8 +39,12 @@ public class PlayerControls : MonoBehaviour
         }
         //Spawn Tower
         else if (Input.GetKeyDown(KeyCode.Alpha2))
+
         {
-            GameObject tower = GameObject.Instantiate(towerTemplate, GameObject.Find("Grid").transform);
+
+
+
+            GameObject tower = GameObject.Instantiate(Wall, GameObject.Find("Grid").transform);
             tower.transform.localPosition = MouseWorldPos;
             GameObject.Find("EnvironmentManager").GetComponent<EnvironmentManagerScript>().Rebake();
         }
