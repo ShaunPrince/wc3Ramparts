@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -293,6 +293,50 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &408261114
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 408261116}
+  - component: {fileID: 408261115}
+  m_Layer: 0
+  m_Name: TurretPlacement
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &408261115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 408261114}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9839479532dfd94ba586cc64bbaf836, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentSelection: {fileID: 0}
+  pov: {fileID: 0}
+  towerTemplate: {fileID: 0}
+  Wall: {fileID: 0}
+--- !u!4 &408261116
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 408261114}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.7630997, y: -2.3618536, z: 17.14677}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &513685766
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,9 +572,10 @@ GameObject:
   - component: {fileID: 1046665965}
   - component: {fileID: 1046665964}
   - component: {fileID: 1046665963}
+  - component: {fileID: 1046665968}
   m_Layer: 0
   m_Name: Main Camera (1)
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -541,7 +586,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1046665962}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0c5b7977bb1df34b84aee08f893ebaf, type: 3}
   m_Name: 
@@ -550,6 +595,7 @@ MonoBehaviour:
   pov: {fileID: 0}
   towerTemplate: {fileID: 1321534671543126, guid: 88078a22691aec64ca5fee5d3310ead9,
     type: 2}
+  Wall: {fileID: 0}
 --- !u!114 &1046665964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -563,6 +609,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   translationSpeed: 1
   rotationSpeed: 1
+  cameraSpeed: 20
+  borderThickness: 100
+  movingLimit: {x: 30, y: 28}
+  minHeight: 10
+  maxHeight: 100
+  rotateSpeed: 50
+  rotatingAmout: 50
 --- !u!81 &1046665965
 AudioListener:
   m_ObjectHideFlags: 0
@@ -616,13 +669,29 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1046665962}
-  m_LocalRotation: {x: 0.31598538, y: 0.3596048, z: -0.13088542, w: 0.8681629}
-  m_LocalPosition: {x: 0, y: 20, z: -10}
+  m_LocalRotation: {x: 0.42261827, y: 0, z: 0, w: 0.9063079}
+  m_LocalPosition: {x: 0, y: 20, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 40, y: 45, z: 0}
+  m_LocalEulerAnglesHint: {x: 50, y: 0, z: 0}
+--- !u!114 &1046665968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1046665962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9839479532dfd94ba586cc64bbaf836, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentSelection: {fileID: 0}
+  pov: {fileID: 0}
+  towerTemplate: {fileID: 1614444220724316, guid: be587e253eee5424a8f22019d617726c,
+    type: 2}
+  Wall: {fileID: 0}
 --- !u!1 &1396423323
 GameObject:
   m_ObjectHideFlags: 0
