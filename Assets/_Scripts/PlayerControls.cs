@@ -26,7 +26,7 @@ public class PlayerControls : MonoBehaviour
         povRay = pov.ScreenPointToRay(Input.mousePosition);
         Physics.Raycast(povRay, out MouseWorldPosHit);
         MouseWorldPos = MouseWorldPosHit.point;
-        Debug.Log(MouseWorldPos);
+       //Debug.Log(MouseWorldPos);
 
         //force mousepos to snap to 5x5 grid
         MouseWorldPos.x = Mathf.Round(MouseWorldPos.x / 5) * 5;
@@ -42,9 +42,7 @@ public class PlayerControls : MonoBehaviour
 
         {
 
-
-
-            GameObject tower = GameObject.Instantiate(Wall, GameObject.Find("Grid").transform);
+            GameObject tower = GameObject.Instantiate(towerTemplate, GameObject.Find("EnvironmentManager").transform);
             tower.transform.localPosition = MouseWorldPos;
             GameObject.Find("EnvironmentManager").GetComponent<EnvironmentManagerScript>().Rebake();
         }
