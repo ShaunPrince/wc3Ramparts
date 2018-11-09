@@ -2,34 +2,59 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class collisionAction : MonoBehaviour {
+public class collisionAction : MonoBehaviour
+{
+
+    public GameObject target;
+    public int attackTimer;
+    public int timerCounter;
 
 	// Use this for initialization
 	void Start ()
     {
-		
+        attackTimer = 100;
+        timerCounter = 0;
 	}
 	
 	// Update is called once per frame
-	void Update ()
+	void Update()
     {
-		
-	}
+        
+    }
 
-    // If an object enters the sphere collider radius
+    // If an object collides with this game object
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("New collision with " + collision.gameObject);
+        if ( collision.collider.CompareTag("Enemy") || collision.collider.CompareTag("Player") || collision.collider.CompareTag("Tower") || collision.collider.CompareTag("Plane") )
+        {
+            Debug.Log("Object " + gameObject.name + " has new collision with " + collision.gameObject);
+        }
     }
 
-    // If an object is currently within the sphere collider radius
-    // Doesn't do anything if the object of collision is the floor or a plane
-    /*private void OnCollisionStay(Collision collision)
+    //If an object enters the sphere trigger radius
+    private void OnTriggerEnter(Collider other)
     {
-        //if (collision.gameObject.GetType() != Plane && collision.gameObject.GetType() != )
-        //{
-        //    Debug.Log("Ongoing collision with " + collision.gameObject);
-        //}
+        //if curretnly has no target, sets new target to the object
+        if (target == null && (other.CompareTag("Player") || other.CompareTag("Tower") || other.CompareTag("Enemy")) && other.gameObject.GetComponent<DamageableEntity>() != null)
+        {
+            target = other.gameObject;
+            Debug.Log("Target Acquired: " + gameObject.name);
+        }
     }
-    */
+
+    //If an object is currently within the sphere trigger radius
+    private void OnTriggerStay(Collider other)
+    {
+        //if this object has a target within range, attack it
+        if (target != null && target == other.gameObject)
+        {
+            if (attackTimer <= timerCounter)
+            {
+                target.GetComponent<DamageableEntity>().takeDamage(5);
+                //attackTimer += 20;
+                timerCounter = 0;
+            }
+            timerCounter++;
+        }
+    }
 }
