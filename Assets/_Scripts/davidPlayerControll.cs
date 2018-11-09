@@ -79,7 +79,7 @@ public class davidPlayerControll : MonoBehaviour
         if (Input.GetMouseButtonDown(1) && currentSelection == GameObject.Find("PlayerUnit"))
         {
 
-            FindObjectOfType<UnitReceiveCommands>().passiveTravelTo(MouseWorldPosHit.point);
+            FindObjectOfType<UnitReceiveCommands>().passiveMoveTo(MouseWorldPosHit.point);
         }
 
 
