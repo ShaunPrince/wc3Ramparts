@@ -28,7 +28,7 @@ public class CameraMovement : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        rotation = Camera.main.transform.rotation;
+        //rotation = Camera.main.transform.rotation;
 
 	}
 	

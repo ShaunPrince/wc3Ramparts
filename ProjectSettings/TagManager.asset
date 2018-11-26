@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Plane
   - Tower
+  - Keep
   layers:
   - Default
   - TransparentFX

@@ -5,9 +5,9 @@ using UnityEngine.AI;
 
 public class UnitReceiveCommands : MonoBehaviour
 {
-    //
+    
     public float moveSpeed = 1;
-    //
+    
     Vector3 destination;
 
 

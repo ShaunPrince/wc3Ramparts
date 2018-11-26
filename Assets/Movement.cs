@@ -6,20 +6,34 @@ public class Movement : MonoBehaviour
 {
     // The target marker.
     public Transform target;
-    
+
 
     // Use this for initialization
     void Start()
     {
-        target = GameObject.FindWithTag("Enemy").transform;
-	}
+        assignTarget();
+    }
 
     // Update is called once per frame
     void Update()
     {
         // Move our position a step closer to the target.
-        Vector3 moveTo = new Vector3(target.position.x, 0, target.position.z);
-        this.gameObject.GetComponentInChildren<UnitReceiveCommands>().passiveMoveTo(moveTo);
+        if (!gameObject.GetComponent<collisionAction>().isWithinRange())
+        {
+            if( target != null && !gameObject.GetComponent<collisionAction>().needsNewMoveTarget )
+            {
+                Vector3 moveTo = new Vector3(target.position.x, 0, target.position.z);
+                this.gameObject.GetComponentInChildren<UnitReceiveCommands>().passiveMoveTo(moveTo);
+            }
+            else
+            {
+                assignTarget();
+            }
+        }
+    }
 
+    void assignTarget()
+    {
+        target = GameObject.FindWithTag("Enemy").transform;
     }
 }
