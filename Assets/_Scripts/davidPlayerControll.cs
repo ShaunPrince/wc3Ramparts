@@ -32,7 +32,7 @@ public class davidPlayerControll : MonoBehaviour
             MouseWorldPos = MouseWorldPosHit.point;
         }
         
-        Debug.Log(MouseWorldPos);
+        //Debug.Log(MouseWorldPos);
 
         //force mousepos to snap to 5x5 grid
         MouseWorldPos.x = Mathf.Round(MouseWorldPos.x / 5) * 5;
@@ -72,8 +72,14 @@ public class davidPlayerControll : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-
+            if (CurrentObject != null)
+            {
+                //Debug.Log("CREATE LADDER");
+                CurrentObject.transform.GetChild(0).GetComponent<CreateLadder>().CreateLadderCall();
+            }
             CurrentObject = null;
+
+
         }
 
         if (Input.GetMouseButtonDown(1) && currentSelection == GameObject.Find("PlayerUnit"))
