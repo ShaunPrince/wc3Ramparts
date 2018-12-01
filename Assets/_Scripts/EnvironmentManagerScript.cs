@@ -15,7 +15,8 @@ public class EnvironmentManagerScript : MonoBehaviour
             surfaces.Add(this.gameObject.transform.GetChild(i).gameObject.GetComponent<NavMeshSurface>());
         }
 
-        Rebake();
+        //Rebake();
+
         //for (int i = 0; i < surfaces.Count; ++i)
         //{
         //    surfaces[i].BuildNavMesh();
